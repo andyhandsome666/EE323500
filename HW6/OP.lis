@@ -1,0 +1,364 @@
+ ****** PrimeSim HSPICE -- R-2020.12-SP2 linux64 (May 24 2021 7074677) ******
+  Copyright (c) 1986 - 2024 by Synopsys, Inc. All Rights Reserved.
+  This software and the associated documentation are proprietary
+  to Synopsys, Inc. This software may only be used in accordance
+  with the terms and conditions of a written license agreement with
+  Synopsys, Inc. All other use, reproduction, or distribution of
+  this software is strictly prohibited.
+  Input File: OP.sp                                                             
+  Command line options: /usr/cadtool/cad/synopsys/hspice/2020.12-sp2/hspice/linux64/hspice -i OP.sp -o OP.lis
+  Start time: Sun May 26 22:23:41 2024
+ lic:  
+ lic: FLEXlm: SDK_12.9.5 
+ lic: USER:   ee323524             HOSTNAME: ws42 
+ lic: HOSTID: "5cf3fcb5e35c"       PID:      10081 
+ lic: Using FLEXlm license file: 
+ lic: 26585@lshc 
+ lic: Checkout 1 hspice 
+ lic: License/Maintenance for hspice will expire on 14-may-2025/2023.12 
+ lic: 410(in_use)/600(total) FLOATING license(s) on SERVER 26585@lshc 
+ lic:   
+  **info**  the obsolete option acout is ignored
+  **info**  the obsolete option acout is ignored
+  **warning** (OP.sp:6) runlvl smaller than 5, reset to 5 when accurate turned on
+  **warning** option measfile is disabled due to no .alter in the netlist
+
+ **warning**  runlvl smaller than 5, reset to 5 when accurate turned on
+ 
+
+  
+      
+ **info** set option symb=1 internally to help for convergence.
+ *****************************************************************
+ ******  option summary
+ ******
+ runlvl  = 5         bypass  = 2.0000    
+ **info** dc convergence successful at GMINDC ramping method 
+1****** PrimeSim HSPICE -- R-2020.12-SP2 linux64 (May 24 2021 7074677) ******
+ ******  
+ *differential amplifer
+
+ ****** operating point information tnom=  25.000 temp=  25.000 ******
+ ****** operating point status is all       simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:vb      =   1.2000  0:vbn1    = 600.0000m 0:vbn2    = 800.0000m
+ +0:vbp1    = 792.0000m 0:vdd     =   1.8000  0:vin     = 900.0000m
+ +0:vip     = 900.0000m 0:vout    =   1.1297  0:vss     =   0.     
+ +0:w01     =   1.5186  0:w35     =   1.4518  0:w46     =   1.4518 
+ +0:w68     =   1.1297  0:w79     = 359.3012m 0:w810    = 359.3012m
+
+
+ maximum nodal capacitance=   2.494E-12         on node     0:vdd             
+
+    nodal  capacitance table 
+
+    node    =    cap      node    =    cap      node    =    cap
+
+ +0:vb      =   1.5948p 0:vbn1    =  18.9647f 0:vbn2    =  59.9703f
+ +0:vbp1    =  23.6625f 0:vdd     =   2.4945p 0:vin     =  30.2889f
+ +0:vip     =  30.2889f 0:vout    = 609.3506f 0:vss     = 663.8873f
+ +0:w01     = 150.3305f 0:w35     =  15.5539f 0:w46     =  15.5539f
+ +0:w68     =  16.9853f 0:w79     =  43.2309f 0:w810    =  43.2309f
+
+ 
+
+ **** voltage sources
+
+ subckt                                                                    
+ element  0:vip      0:vb       0:vbn1     0:vbn2     0:vbp1     0:vdd     
+  volts    900.0000m    1.2000   600.0000m  800.0000m  792.0000m    1.8000 
+  current    0.         0.         0.         0.         0.        -8.4358u
+  power      0.         0.         0.         0.         0.        15.1844u
+
+ subckt                        
+ element  0:vin      0:vss     
+  volts    900.0000m    0.     
+  current    0.         8.4358u
+  power      0.         0.     
+
+     total voltage source power dissipation=   15.1844u       watts
+
+
+
+
+ **** mosfets
+
+
+ subckt                                                                    
+ element  0:m0       0:m1       0:m2       0:m3       0:m4       0:m5      
+ model    0:p_18.1   0:p_18.1   0:p_18.1   0:p_18.1   0:p_18.1   0:p_18.1  
+ region   Saturation Saturation Saturation Saturation Saturation Saturation
+  id        -6.5854u   -3.2927u   -3.2927u -925.1781n -925.1781n -925.1804n
+  ibs      6.234e-22  263.9139a  263.9139a  4.220e-22  4.220e-22  136.9690a
+  ibd      641.1064a    1.3510f    1.3510f   57.2674a   57.2674a  263.6808a
+  vgs     -600.0000m -618.5657m -618.5657m -670.2614m -670.2614m -659.8335m
+  vds     -281.4343m   -1.1593    -1.1593  -348.1665m -348.1665m -322.0950m
+  vbs        0.       281.4343m  281.4343m    0.         0.       348.1665m
+  vth     -468.1293m -601.4502m -601.4502m -515.3750m -515.3750m -614.0603m
+  vdsat   -136.4263m  -86.0184m  -86.0184m -189.7191m -189.7191m -103.9534m
+  vod     -131.8707m  -17.1155m  -17.1155m -154.8864m -154.8864m  -45.7732m
+  beta     722.8992u    1.4957m    1.4957m   60.9278u   60.9278u  267.1520u
+  gam eff  557.0847m  555.1674m  555.1674m  557.0846m  557.0846m  554.7472m
+  gm        77.4693u   60.4804u   60.4804u    9.3613u    9.3613u   15.1877u
+  gds      401.7127n  264.2462n  264.2462n  117.8696n  117.8696n   96.5442n
+  gmb       23.8459u   15.3849u   15.3849u    2.6579u    2.6579u    3.7164u
+  cdtot     78.9125f   12.8995f   12.8995f    1.4112f    1.4112f    4.2705f
+  cgtot      1.5948p   30.2889f   30.2889f    3.8173f    3.8173f   11.8313f
+  cstot      1.7709p   35.7090f   35.7090f    5.1259f    5.1259f   14.1427f
+  cbtot    628.1941f   29.0894f   29.0894f    3.5465f    3.5465f    9.9428f
+  cgs        1.4408p   21.5877f   21.5877f    3.1736f    3.1736f    9.3622f
+  cgd       25.2994f    4.0906f    4.0906f  280.2475a  280.2475a    1.0749f
+
+
+
+ subckt                                                         
+ element  0:m6       0:m7       0:m8       0:m9       0:m10     
+ model    0:p_18.1   0:n_18.1   0:n_18.1   0:n_18.1   0:n_18.1  
+ region   Saturation Saturation Saturation Saturation Saturation
+  id      -925.1804n  925.1825n  925.1825n    4.2179u    4.2179u
+  ibs      136.9690a -152.0445a -152.0445a -1.305e-21 -1.305e-21
+  ibd      263.6807a -478.0675a -478.0676a  -49.7201a  -49.7201a
+  vgs     -659.8335m  440.6988m  440.6988m  600.0000m  600.0000m
+  vds     -322.0950m  770.4374m  770.4374m  359.3012m  359.3012m
+  vbs      348.1665m -359.3012m -359.3012m    0.         0.     
+  vth     -614.0603m  432.8719m  432.8719m  378.5859m  378.5859m
+  vdsat   -103.9534m   65.9841m   65.9841m  199.3986m  199.3986m
+  vod      -45.7732m    7.8270m    7.8270m  221.4141m  221.4141m
+  beta     267.1520u  730.1224u  730.1224u  188.6597u  188.6597u
+  gam eff  554.7472m  516.6629m  516.6629m  507.4462m  507.4462m
+  gm        15.1877u   19.7664u   19.7664u   33.9773u   33.9773u
+  gds       96.5442n  198.6416n  198.6416n  605.7960n  605.7960n
+  gmb        3.7164u    3.3872u    3.3872u    6.6608u    6.6608u
+  cdtot      4.2705f    5.0801f    5.0801f    1.5349f    1.5349f
+  cgtot     11.8313f   29.9851f   29.9851f    9.4823f    9.4823f
+  cstot     14.1427f   28.7965f   28.7965f   10.3932f   10.3932f
+  cbtot      9.9428f   16.9872f   16.9872f    4.5633f    4.5633f
+  cgs        9.3622f   22.8626f   22.8626f    8.4227f    8.4227f
+  cgd        1.0749f    1.4042f    1.4042f  362.9525a  362.9525a
+
+
+
+
+
+
+
+ ****     small-signal transfer characteristics
+
+      v(vout)/vip                              =    7.5328k
+      input resistance at             vip      =  1.000e+20
+      output resistance at v(vout)             =  129.2455x
+
+
+
+ ***************************************************
+   ******   pole/zero analysis  
+  
+  
+    input =  0:vip          output = v(vout)
+  
+       poles (rad/sec)                 poles ( hertz)
+ real            imag            real            imag            
+ -12.6779k       0.              -2.01775k       0.              
+ -541.249x       0.              -86.1424x       0.              
+ -557.580x       0.              -88.7415x       0.              
+ -623.633x       544.072x        -99.2543x       86.5918x        
+ -623.633x       -544.072x       -99.2543x       -86.5918x       
+ -1.02876g       0.              -163.732x       0.              
+ -1.22932g       0.              -195.653x       0.              
+  
+       zeros (rad/sec)                 zeros ( hertz)
+ real            imag            real            imag            
+ -536.561x       0.              -85.3963x       0.              
+ -870.200x       0.              -138.497x       0.              
+ -1.22918g       0.              -195.629x       0.              
+ -1.49677g       1.59752g        -238.218x       254.253x        
+ -1.49677g       -1.59752g       -238.218x       -254.253x       
+  
+  ***** constant factor = 9.08661y
+ ******
+ *differential amplifer
+
+ ****** ac analysis tnom=  25.000 temp=  25.000 ******
+x
+
+ freq         voltage   
+             vout       
+    1.00000     7.5410k 
+    1.25893     7.5410k 
+    1.58489     7.5410k 
+    1.99526     7.5410k 
+    2.51189     7.5410k 
+    3.16228     7.5410k 
+    3.98107     7.5410k 
+    5.01187     7.5409k 
+    6.30957     7.5409k 
+    7.94328     7.5409k 
+   10.00000     7.5409k 
+   12.58925     7.5408k 
+   15.84893     7.5407k 
+   19.95262     7.5406k 
+   25.11886     7.5404k 
+   31.62278     7.5400k 
+   39.81072     7.5395k 
+   50.11872     7.5386k 
+   63.09573     7.5373k 
+   79.43282     7.5351k 
+  100.00000     7.5317k 
+  125.89254     7.5263k 
+  158.48932     7.5178k 
+  199.52623     7.5044k 
+  251.18864     7.4832k 
+  316.22777     7.4500k 
+  398.10717     7.3983k 
+  501.18723     7.3186k 
+  630.95734     7.1973k 
+  794.32823     7.0168k 
+    1.00000k    6.7567k 
+    1.25893k    6.3978k 
+    1.58489k    5.9303k 
+    1.99526k    5.3621k 
+    2.51189k    4.7225k 
+    3.16228k    4.0563k 
+    3.98107k    3.4092k 
+    5.01187k    2.8163k 
+    6.30957k    2.2969k 
+    7.94328k    1.8566k 
+   10.00000k    1.4915k 
+   12.58925k    1.1934k 
+   15.84893k  952.3621  
+   19.95262k  758.7244  
+   25.11886k  603.8051  
+   31.62278k  480.1878  
+   39.81072k  381.7124  
+   50.11872k  303.3484  
+   63.09573k  241.0301  
+   79.43282k  191.4931  
+  100.00000k  152.1264  
+  125.89254k  120.8473  
+  158.48932k   95.9969  
+  199.52623k   76.2553  
+  251.18864k   60.5727  
+  316.22777k   48.1150  
+  398.10717k   38.2192  
+  501.18723k   30.3585  
+  630.95734k   24.1144  
+  794.32823k   19.1544  
+    1.00000x   15.2144  
+    1.25893x   12.0847  
+    1.58489x    9.5984  
+    1.99526x    7.6234  
+    2.51189x    6.0542  
+    3.16228x    4.8075  
+    3.98107x    3.8169  
+    5.01187x    3.0295  
+    6.30957x    2.4034  
+    7.94328x    1.9053  
+   10.00000x    1.5087  
+   12.58925x    1.1925  
+   15.84893x  939.8836m 
+   19.95262x  737.4752m 
+   25.11886x  574.6428m 
+   31.62278x  442.9754m 
+   39.81072x  335.9114m 
+   50.11872x  248.4773m 
+   63.09573x  177.1115m 
+   79.43282x  119.5562m 
+  100.00000x   74.8230m 
+  125.89254x   42.9209m 
+  158.48932x   23.4116m 
+  199.52623x   13.4250m 
+  251.18864x    8.5329m 
+  316.22777x    5.7121m 
+  398.10717x    3.8342m 
+  501.18723x    2.5456m 
+  630.95734x    1.6748m 
+  794.32823x    1.0982m 
+    1.00000g  722.2808u 
+    1.25893g  479.5060u 
+    1.58489g  323.3017u 
+    1.99526g  222.5739u 
+    2.51189g  157.0218u 
+    3.16228g  113.6310u 
+    3.98107g   84.2035u 
+    5.01187g   63.6589u 
+    6.30957g   48.8833u 
+    7.94328g   37.9688u 
+   10.00000g   29.7302u 
+   12.58925g   23.4106u 
+   15.84893g   18.5085u 
+   19.95262g   14.6786u 
+   25.11886g   11.6739u 
+   31.62278g    9.3126u 
+   39.81072g    7.4578u 
+   50.11872g    6.0047u 
+   63.09573g    4.8722u 
+   79.43282g    3.9971u 
+  100.00000g    3.3291u 
+y
+ dcgain_in_db=  77.5485     at=   1.0000 
+             from=   1.0000     to= 100.0000g
+ dcgain=   7.5410k    at=   1.0000 
+             from=   1.0000     to= 100.0000g
+ unity_frequency=  15.0000x
+ phase=-104.9998 
+ phase_margin=  75.0002 
+
+          ***** job concluded
+ ******  
+ *differential amplifer
+
+ ****** job statistics summary tnom=  25.000 temp=  25.000 ******
+  
+ ******  Machine Information  ******
+ CPU:
+ model name	: Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz
+ cpu MHz	: 1596.000
+ CPU(s)		: 8
+  
+ OS:
+ Linux version 3.10.0-1160.95.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Jul 24 13:59:37 UTC 2023
+
+ System loadavg : 0.83 1.14 1.38 3/743 10085
+
+
+  ******  PrimeSim HSPICE Threads Information  ******
+
+  Command Line Threads Count :     1
+  Available CPU Count        :     8
+  Actual Threads Count       :     1
+
+
+  ******  Circuit Statistics  ******
+  # nodes       =      38 # elements   =      20
+  # resistors   =       0 # capacitors =       1 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       0
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       8
+  # curr_srcs   =       0 # diodes     =       0 # bjts        =       0
+  # jfets       =       0 # mosfets    =      11 # U elements  =       0
+  # T elements  =       0 # W elements =       0 # B elements  =       0
+  # S elements  =       0 # P elements =       0 # va device   =       0
+  # vector_srcs =       0 # N elements =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.03           1         244
+  ac analysis        0.00         111         111
+  readin             0.02
+  errchk             0.00
+  setup              0.00
+  output             0.00
+
+
+           peak memory used        470.91 megabytes
+           total cpu time            0.06 seconds
+           total elapsed time        0.77 seconds
+           job started at     22:23:41 05/26/2024
+           job ended   at     22:23:42 05/26/2024
+           job total runtime         0.77 seconds
+
+
+ lic: Release hspice token(s) 
+ lic: total license checkout elapse time:        0.69(s)

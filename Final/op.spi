@@ -1,0 +1,48 @@
+.param supplyp=1.5 * Your positive supply voltage
+.param supplyn=0 * Your negative supply voltage
+.param comon=0.75 * Your output coMon mode voltage
+
+
+.SUBCKT op Vinp Vinn vdd vss vop von vocm
+
+MCM1 net55 net60 net51 net51 n_18 W=45u L=2u m=1
+MCM2 net73 Vocm net51 net51 n_18 W=45u L=2u m=1
+MCM3 net55 net55 Vdd Vdd p_18 W=15.2u L=2u m=2
+MCM4 net73 net73 Vdd Vdd p_18 W=15.2u L=2u m=2
+MCM5 net51 net52 vss vss n_18 W=14u L=1u m=1
+
+M1 net44 Vinp net47 net47 p_18 W=19.99u L=0.7u m=6
+M2 D4 Vinn net47 net47 p_18 W=19.99u L=0.7u m=6
+M3 net44 net52 vss vss n_18 W=47.12u L=15u m=1
+M4 D4 net52 vss vss n_18 W=47.12u L=15u m=1
+M5 net47 net55 VDD VDD p_18 W=35u L=1.2u m=1
+
+M6 D6 D4 vss vss n_18 W=24u L=0.7u m=1
+M7 D6 net68 VDD VDD p_18 W=35u L=1.2u m=9
+M8 net42 net44 vss vss n_18 W=24u L=0.7u m=1
+M9 net42 net68 VDD VDD p_18 W=35u L=1.2u m=9
+
+M10 VDD D6 Von Von n_18 W=50u  L=0.55u m=2
+M11 Von net52 vss vss n_18 W=16u L=0.18u 
+M12 VDD net42 Vop Vop n_18 W=50u  L=0.55u m=2
+M13 Vop net52 vss vss n_18 W=16u L=0.18u 
+
+MB1 net31 net67 vss vss n_18 W=0.3u L=45u 
+MB2 net67 net52 vss vss n_18 W=2u L=1u 
+MB3 net67 net52 VDD VDD p_18 W=2u L=10u 
+MB4 net26 net52 vss vss n_18 W=5u L=1u 
+MB5 net31 net26 vss vss n_18 W=20u L=1u
+MB6 net52 net31 VDD VDD p_18 W=5u L=1u 
+MB7 net31 net31 VDD VDD p_18 W=5u L=1u 
+MB8 net68 net52 vss vss n_18 W=1u L=1u 
+MB9 net68 net68 VDD VDD p_18 W=11u L=1u 
+
+RRCM2 net60 Von 70k
+RRCM1 Vop net60 70k
+RRz2 net78 D6 4.8k
+
+RRz1 net42 net79 4.8k
+RRb net52 net26 7300
+CCc2 D4 net78 0.73p
+CCc1 net44 net79 0.73p
+.ENDS

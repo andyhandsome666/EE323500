@@ -1,0 +1,311 @@
+ ****** PrimeSim HSPICE -- R-2020.12-SP2 linux64 (May 24 2021 7074677) ******
+  Copyright (c) 1986 - 2024 by Synopsys, Inc. All Rights Reserved.
+  This software and the associated documentation are proprietary
+  to Synopsys, Inc. This software may only be used in accordance
+  with the terms and conditions of a written license agreement with
+  Synopsys, Inc. All other use, reproduction, or distribution of
+  this software is strictly prohibited.
+  Input File: 06_closed-ac.sp                                                   
+  Command line options: /usr/cadtool/cad/synopsys/hspice/2020.12-sp2/hspice/linux64/hspice -i 06_closed-ac.sp -o 06_closed-ac.lis
+  Start time: Wed Jun 26 13:35:17 2024
+ lic:  
+ lic: FLEXlm: SDK_12.9.5 
+ lic: USER:   ee323524             HOSTNAME: ws42 
+ lic: HOSTID: "5cf3fcb5e35c"       PID:      23739 
+ lic: Using FLEXlm license file: 
+ lic: 26585@lshc 
+ lic: Checkout 1 hspice 
+ lic: License/Maintenance for hspice will expire on 14-may-2025/2023.12 
+ lic: 499(in_use)/1100(total) FLOATING license(s) on SERVER 26585@lshc 
+ lic:   
+  **info**  the obsolete option acout is ignored
+  **info**  the obsolete option acout is ignored
+  **warning** (06_closed-ac.sp:6) runlvl smaller than 5, reset to 5 when accurate turned on
+
+ **warning**  runlvl smaller than 5, reset to 5 when accurate turned on
+1****** PrimeSim HSPICE -- R-2020.12-SP2 linux64 (May 24 2021 7074677) ******
+ ******  
+ analog ic term project: closed-loop ac response
+
+ ****** circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 xop.                            op                 1.00 
+ 
+
+  
+      
+ **info** set option symb=1 internally to help for convergence.
+ *****************************************************************
+ ******  option summary
+ ******
+ runlvl  = 5         bypass  = 2.0000    
+  Opening plot unit= 15
+ file=06_closed-ac.pa0
+
+ **info** dc convergence successful at GMINDC ramping method 
+ ******  
+ analog ic term project: closed-loop ac response
+
+ ****** operating point information tnom=  25.000 temp=  25.000 ******
+ ****** operating point status is all       simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:test1   = 750.0000m 0:test2   = 750.0000m 0:vdd     =   1.5000 
+ +0:vinn    = 748.6595m 0:vinp    = 748.6595m 0:vocm    = 750.0000m
+ +0:von     = 747.3189m 0:vop     = 747.3189m 0:vss     =   0.     
+ +1:d4      = 486.7425m 1:d6      =   1.1864  1:net26   = 413.9859m
+ +1:net31   = 720.6631m 1:net42   =   1.1864  1:net44   = 486.7425m
+ +1:net47   =   1.2474  1:net51   = 350.4597m 1:net52   = 509.2514m
+ +1:net55   = 829.8243m 1:net60   = 747.3189m 1:net67   =  25.4611m
+ +1:net68   = 956.5919m 1:net73   = 824.5727m 1:net78   =   1.1864 
+ +1:net79   =   1.1864 
+
+
+ **** voltage sources
+
+ subckt                                                         
+ element  0:vinp     0:vdd      0:vgnd     0:vinn     0:vocm    
+  volts    750.0000m    1.5000     0.       750.0000m  750.0000m
+  current  -53.6218n -393.1080u  378.2688u  -53.6218n    0.     
+  power     40.2164n  589.6619u    0.        40.2164n    0.     
+
+     total voltage source power dissipation=  589.7424u       watts
+
+
+
+ **** resistors
+
+ subckt                                                                    
+ element  0:rload1   0:rload2   0:rtest1   0:rtest2   0:rtest3   0:rtest4  
+  r value  100.0000k  100.0000k   25.0000k   25.0000k   25.0000k   25.0000k
+  v drop   747.3189m  747.3189m   -1.3405m   -1.3405m    1.3405m    1.3405m
+  current    7.4732u    7.4732u  -53.6218n  -53.6218n   53.6218n   53.6218n
+  power      5.5849u    5.5849u   71.8825p   71.8825p   71.8825p   71.8825p
+
+ subckt   xop        xop        xop        xop        xop       
+ element  1:rrcm2    1:rrcm1    1:rrz2     1:rrz1     1:rrb     
+  r value   70.0000k   70.0000k    4.8000k    4.8000k    7.3000k
+  v drop   222.0446a  222.0446a  222.0446a  222.0446a   95.2655m
+  current  3.172e-21  3.172e-21  4.626e-20  4.626e-20   13.0501u
+  power      0.         0.         0.         0.         1.2432u
+
+
+
+ **** mosfets
+
+
+ subckt   xop        xop        xop        xop        xop        xop       
+ element  1:mcm1     1:mcm2     1:mcm3     1:mcm4     1:mcm5     1:m1      
+ model    0:n_18.1   0:n_18.1   0:p_18.1   0:p_18.1   0:n_18.1   0:p_18.1  
+ region   Saturation Saturation Saturation Saturation Saturation Saturation
+  id        18.3185u   19.2101u  -18.3185u  -19.2101u   37.5286u  -16.1815u
+  ibs     -2.749e-21 -2.882e-21  1.777e-21  1.864e-21 -5.911e-21  1.547e-21
+  ibd       -1.5561f   -1.5391f  950.3610a  957.8080a -371.5094a    4.1929f
+  vgs      396.8592m  399.5403m -670.1757m -675.4273m  509.2514m -498.7846m
+  vds      479.3646m  474.1130m -670.1757m -675.4273m  350.4597m -760.7016m
+  vbs        0.         0.         0.         0.         0.         0.     
+  vth      348.3493m  348.3752m -483.0326m -483.0326m  386.6889m -498.6919m
+  vdsat     82.7435m   84.1774m -180.4644m -184.4358m  133.1001m  -68.9791m
+  vod       48.5099m   51.1651m -187.1432m -192.3947m  122.5625m  -92.7815u
+  beta       6.8305m    6.8313m    1.0700m    1.0685m    4.3617m   12.7434m
+  gam eff  507.4459m  507.4459m  557.0846m  557.0846m  507.4461m  557.0847m
+  gm       332.0502u  344.0835u  167.1684u  171.3895u  467.1294u  324.0347u
+  gds        2.7459u    2.8559u  493.5503n  514.9587n    7.0247u    1.2438u
+  gmb       68.4959u   70.9310u   51.7134u   53.0654u   94.5694u   96.8165u
+  cdtot     62.2445f   62.3351f   35.2597f   35.2326f   20.2526f  135.3300f
+  cgtot    543.2597f  548.1804f  391.4754f  391.6086f   95.9765f  392.4811f
+  cstot    564.7918f  571.4326f  446.1466f  446.3735f  107.4276f  418.8933f
+  cbtot    249.0357f  249.1290f  177.1316f  177.0204f   53.5128f  360.3622f
+  cgs      463.6379f  469.7065f  352.4053f  352.6616f   83.4759f  261.4386f
+  cgd       15.7945f   15.7800f   11.0531f   11.0557f    5.0928f   43.0433f
+
+
+
+ subckt   xop        xop        xop        xop        xop        xop       
+ element  1:m2       1:m3       1:m4       1:m5       1:m6       1:m7      
+ model    0:p_18.1   0:n_18.1   0:n_18.1   0:p_18.1   0:n_18.1   0:p_18.1  
+ region   Saturation Saturation Saturation Saturation Saturation Saturation
+  id       -16.1815u   16.1815u   16.1815u  -32.3629u   57.8476u  -57.8476u
+  ibs      1.547e-21 -2.426e-21 -2.426e-21  3.030e-21 -8.850e-21  5.416e-21
+  ibd        4.1929f   -1.6528f   -1.6528f  397.8958a   -2.0943f    4.4472f
+  vgs     -498.7846m  509.2514m  509.2514m -670.1757m  486.7425m -543.4081m
+  vds     -760.7016m  486.7425m  486.7425m -252.5559m    1.1864  -313.6382m
+  vbs        0.         0.         0.         0.         0.         0.     
+  vth     -498.6919m  313.1614m  313.1614m -491.9492m  405.2058m -491.9487m
+  vdsat    -68.9791m  174.6249m  174.6249m -177.0466m  110.0098m  -90.2058m
+  vod      -92.7815u  196.0899m  196.0899m -178.2266m   81.5367m  -51.4594m
+  beta      12.7434m  939.8106u  939.8106u    2.0685m   10.8652m   19.1985m
+  gam eff  557.0847m  507.4459m  507.4459m  557.0846m  507.4461m  557.0847m
+  gm       324.0347u  148.3337u  148.3337u  301.8370u  872.4567u  977.5702u
+  gds        1.2438u  509.4228n  509.4228n    7.5931u   10.1608u    4.5352u
+  gmb       96.8165u   29.0994u   29.0994u   92.3873u  173.0748u  295.2191u
+  cdtot    135.3300f   79.1633f   79.1633f   50.4719f   29.5657f  392.7644f
+  cgtot    392.4811f    4.6051p    4.6051p  275.1727f  115.0652f    2.1790p
+  cstot    418.8933f    4.7538p    4.7538p  314.6566f  133.4355f    2.4138p
+  cbtot    360.3622f    1.3248p    1.3248p  147.7029f   74.9042f    1.3176p
+  cgs      261.4386f    4.1968p    4.1968p  241.8916f   96.3412f    1.8036p
+  cgd       43.0433f   19.0844f   19.0844f   15.2982f    8.6212f  114.8082f
+
+
+
+ subckt   xop        xop        xop        xop        xop        xop       
+ element  1:m8       1:m9       1:m10      1:m11      1:m12      1:m13     
+ model    0:n_18.1   0:p_18.1   0:n_18.1   0:n_18.1   0:n_18.1   0:n_18.1  
+ region   Saturation Saturation Saturation Saturation Saturation Saturation
+  id        57.8476u  -57.8476u   88.8118u   81.3922u   88.8118u   81.3922u
+  ibs     -8.850e-21  5.416e-21 -1.330e-20 -1.271e-20 -1.330e-20 -1.271e-20
+  ibd       -2.0943f    4.4472f   -5.4175f -897.6070a   -5.4175f -897.6070a
+  vgs      486.7425m -543.4081m  439.0429m  509.2514m  439.0429m  509.2514m
+  vds        1.1864  -313.6382m  752.6811m  747.3189m  752.6811m  747.3189m
+  vbs        0.         0.         0.         0.         0.         0.     
+  vth      405.2058m -491.9487m  429.6148m  496.6058m  429.6148m  496.6058m
+  vdsat    110.0098m  -90.2058m   73.3610m   91.9719m   73.3610m   91.9719m
+  vod       81.5367m  -51.4594m    9.4280m   12.6456m    9.4280m   12.6456m
+  beta      10.8652m   19.1985m   58.4743m   31.9253m   58.4743m   31.9253m
+  gam eff  507.4461m  557.0847m  507.4460m  507.4462m  507.4460m  507.4462m
+  gm       872.4567u  977.5702u    1.8210m    1.4115m    1.8210m    1.4115m
+  gds       10.1608u    4.5352u   23.6875u   53.1415u   23.6875u   53.1415u
+  gmb      173.0748u  295.2191u  361.6919u  209.1191u  361.6919u  209.1191u
+  cdtot     29.5657f  392.7644f  130.9431f   21.0455f  130.9431f   21.0455f
+  cgtot    115.0652f    2.1790p  299.0338f   24.6960f  299.0338f   24.6960f
+  cstot    133.4355f    2.4138p  345.1456f   35.4940f  345.1456f   35.4940f
+  cbtot     74.9042f    1.3176p  293.4824f   38.3684f  293.4824f   38.3684f
+  cgs       96.3412f    1.8036p  209.7153f   15.3718f  209.7153f   15.3718f
+  cgd        8.6212f  114.8082f   37.1766f    5.9577f   37.1766f    5.9577f
+
+
+
+ subckt   xop        xop        xop        xop        xop        xop       
+ element  1:mb1      1:mb2      1:mb3      1:mb4      1:mb5      1:mb6     
+ model    0:n_18.1   0:n_18.1   0:p_18.1   0:n_18.1   0:n_18.1   0:p_18.1  
+ region   Subth      Linear     Saturation Saturation Saturation Saturation
+  id       272.1984f    1.5193u   -1.5193u   13.0501u   12.9379u  -13.0501u
+  ibs     -6.468e-28 -3.379e-22  2.076e-22 -2.309e-21 -1.996e-21  1.426e-21
+  ibd      -67.7106a   -5.4443a  193.7660a -176.1073a   -1.0689f  260.2563a
+  vgs       25.4611m  509.2514m -990.7486m  509.2514m  413.9859m -779.3369m
+  vds      720.6631m   25.4611m   -1.4745   413.9859m  720.6631m -990.7486m
+  vbs        0.         0.         0.         0.         0.         0.     
+  vth      311.8930m  396.9924m -462.9999m  388.6948m  383.4642m -495.6982m
+  vdsat     35.1589m  125.2233m -453.8160m  130.9688m   77.2369m -264.0471m
+  vod     -286.4319m  112.2589m -527.7487m  120.5566m   30.5216m -283.6387m
+  beta       1.8305u  620.5832u   12.6417u    1.5559m    6.2131m  337.3257u
+  gam eff  507.4459m  507.4460m  557.0846m  507.4461m  507.4460m  557.0846m
+  gm         9.8962p   13.4978u    5.2814u  164.1586u  249.3230u   81.2287u
+  gds        5.2555f   52.5328u    4.5148n    2.2038u    2.6768u  478.1867n
+  gmb        2.2619p    2.8398u    1.7602u   33.1590u   51.3886u   25.2500u
+  cdtot    508.6133a   14.0381f    2.2065f    7.1589f   26.4070f    5.5564f
+  cgtot     25.9000f   16.1915f  126.4211f   34.2728f  115.4845f   32.5806f
+  cstot    609.0552a   16.4802f  143.7326f   38.4362f  124.7089f   38.3603f
+  cbtot     26.5471f    8.5253f   45.1037f   19.1668f   74.4593f   18.2441f
+  cgs      119.3011a   10.5980f  116.9829f   29.8184f   92.3950f   28.6458f
+  cgd      116.4894a    5.0349f  738.7069a    1.7971f    7.2488f    1.7991f
+
+
+
+ subckt   xop        xop        xop       
+ element  1:mb7      1:mb8      1:mb9     
+ model    0:p_18.1   0:n_18.1   0:p_18.1  
+ region   Saturation Saturation Saturation
+  id       -12.9379u    2.3904u   -2.3904u
+  ibs      1.414e-21 -7.126e-22  2.374e-22
+  ibd      204.7210a -137.0980a  285.4238a
+  vgs     -779.3369m  509.2514m -543.4081m
+  vds     -779.3369m  956.5919m -543.4081m
+  vbs        0.         0.         0.     
+  vth     -495.6982m  397.2984m -494.6265m
+  vdsat   -264.0461m  125.5823m  -90.2889m
+  vod     -283.6387m  111.9530m  -48.7816m
+  beta     337.3258u  308.4958u  799.0479u
+  gam eff  557.0846m  507.4461m  557.0847m
+  gm        80.5004u   31.2551u   40.6497u
+  gds      592.9742n  336.8836n  144.1214n
+  gmb       25.0209u    6.2383u   12.2303u
+  cdtot      5.7599f    1.3764f   13.0063f
+  cgtot     32.5915f    6.8219f   63.1253f
+  cstot     38.3551f    7.7634f   70.9216f
+  cbtot     18.4318f    3.9046f   40.8764f
+  cgs       28.6521f    5.9104f   51.4617f
+  cgd        1.8065f  354.4127a    3.9556f
+
+
+
+
+
+
+
+ ****     small-signal transfer characteristics
+
+      v(vop,von)/vinp                          =  999.8036m
+      input resistance at             vinp     =   33.4769k
+      output resistance at v(vop,von)          =  200.1776m
+
+
+
+ ******
+ analog ic term project: closed-loop ac response
+
+ ****** ac analysis tnom=  25.000 temp=  25.000 ******
+ dcgain_in_db=  -1.7054m
+ maxgain_in_db=   1.4482     at=  25.1189x
+             from=  10.0000     to=   1.0000g
+
+          ***** job concluded
+ ******  
+ analog ic term project: closed-loop ac response
+
+ ****** job statistics summary tnom=  25.000 temp=  25.000 ******
+  
+ ******  Machine Information  ******
+ CPU:
+ model name	: Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz
+ cpu MHz	: 1596.000
+ CPU(s)		: 8
+  
+ OS:
+ Linux version 3.10.0-1160.95.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Jul 24 13:59:37 UTC 2023
+
+ System loadavg : 0.16 0.10 0.07 1/577 23746
+
+
+  ******  PrimeSim HSPICE Threads Information  ******
+
+  Command Line Threads Count :     1
+  Available CPU Count        :     8
+  Actual Threads Count       :     1
+
+
+  ******  Circuit Statistics  ******
+  # nodes       =      80 # elements   =      47
+  # resistors   =      11 # capacitors =       4 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       0
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       5
+  # curr_srcs   =       0 # diodes     =       0 # bjts        =       0
+  # jfets       =       0 # mosfets    =      27 # U elements  =       0
+  # T elements  =       0 # W elements =       0 # B elements  =       0
+  # S elements  =       0 # P elements =       0 # va device   =       0
+  # vector_srcs =       0 # N elements =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.04           1         238
+  ac analysis        0.01          81          81
+  readin             0.03
+  errchk             0.01
+  setup              0.01
+  output             0.00
+
+
+           peak memory used        466.89 megabytes
+           total cpu time            0.09 seconds
+           total elapsed time        3.19 seconds
+           job started at     13:35:17 06/26/2024
+           job ended   at     13:35:20 06/26/2024
+           job total runtime         3.19 seconds
+
+
+ lic: Release hspice token(s) 
+ lic: total license checkout elapse time:        3.09(s)
